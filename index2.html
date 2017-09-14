@@ -18,94 +18,116 @@
 	<link href="https://fonts.googleapis.com/css?family=Monoton" rel="stylesheet">
 
 	<!-- STYLE.CSS SYTLESHEET -->
-	<link rel="stylesheet" type="text/css" href="assets/css/style2.css">
+	<link rel="stylesheet" type="text/css" href="assets/css/style.css">
 	
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 </head>
 <body>
-<!-- Starting on the Header HERE! -->	
-	<nav id="mainheader" class="navbar navbar-default" style="background-color: #566eeb">
-	    <div class="container-fluid">
-	    	<div class="navbar-header">
-	    		<image id="gifHeaderImg" class="text-center" src="assets/images/giphyImage.png" alt="Giphy Icon Back-up"></image> 
-	    	</div>
-<!-- WHY DOES THIS NOT FUNCTION WELL? 	<h1><a class="navbar-brand text-center" href="#" style=" color: black">GIF MANIA</a></h1> -->
-	    	<ul class="nav navbar-nav navbar-right">
-	    		<li><a href="index2.html"> Refresh This Page. </a></li>
-				<li><a href="https://giphy.com/" target="_blank"> Who is GIFFY? </a></li>
-				<li><a href="https://developers.giphy.com/" target="_blank"> Play with GIF magic! </a></li>
-			</ul>
-	    </div>
-	</nav>
+<wrapper class= container-fluid>
 
-<!-- Starting on the Main Content of Page HERE! -->
-	<wrapper class="container-fluid">
-	
-			
-		<div class="container text-center">
-			<h1 id="gifSearchTitle" style="color: #566eeb">GIF Searches</h1>
-			<div id="searchedGif"></div>
-
-			<br/>
-		
-			<div class="row">
-				<div class="col-xs-12 col-md-8">
-					<div id="gifdisplay" class="panel panel-inverse">
-						<div class="page-header">
-							<h1 id="gifDiplayHeader" class="text-center">GIFs IN ACTION!!</h1>
-						</div>
-						<div class="panel-body">
-							<div id="gifArea"> You haven't entered any GIFS! <br/> Use the buttons above to have a 'GIFtastic' time!!</div>						
-						</div>
+	<div class="container main">
+		<div class="row">
+			<div class="col-md-12">
+				<div class="container text-center">
+					<div>
+						<header>
+							<div class="col-md-12 jumbotron center-block text-center" style="color: white; background-color: #566eeb">
+								<h1 style="background-color: #bd1de6; color: black">GIF MANIA</h1>
+								<div class="col-md-12 center-block text-center jumbotron" style="background-color: #566eeb">
+									<image id="gifHeaderImg" src="assets/images/giphyImage.png" alt="Giphy Icon Back-up"></image> 
+								</div>
+							</div>
+						</header> 
 					</div>
 				</div>
-		
-				<div id="gifSearchParm" class="col-xs-12 col-md-4">
-					<div class="panel panel-inverse">
-						<div class="panel-heading">
-							<div class="page-header">
-								<h3>Search Parameters</h3>
-							</div>
-						</div>
-						<div class="panel-body">
+			</div>
+		</div>
+	</div>
+
+	<div class="container">
+		<div class="row">
+			<div class="col-md-12">
+				<div class="container text-center">
+					<div class="panel panel-default">
+						<div class="panel-heading" style="color: white; background-color: #e244cf">GIF Search Parameters
+							<div class="panel-body" style="background-color: #566eeb">
+								
+								<br/>
 								<form id="searchForm">
 									<div class="form-group">
-										
+									<!--<label for="search-input">GIF Theme</label> //THIS IS ONE OPTIONS FOR THE GIF THEME SEARCH
+									<input id="searchTerm" type="text" class="form-control"/>
+									<input type="submit" value="submit"/> -->
+
 										<label for="search-input">Find a GIF!</label>
-										<input id="searchBox" class="form-control" type="text" value="      Type your GIF here!" style=" color: white; background-color: #e244cf; text-align: left"> <!--  Find out how to make the above space WITHOUT having to use actual spaces!!!! -->
+						 				<!-- <input type="submit" value="submit"> -->
+										
+										<input id="searchBox" class="form-control" type="text" value="Type your GIF here!" style=" color: white; background-color: #4b6594; text-align: left">
+
+<!-- 	<select id="searchInput inverse" class="form-control" style=" color: white; background-color: #4b6594"> //THIS PROVIDE A DROP DOWN MENU OF THEMETIC OPTIONS THAT RESPOND TO AND MODIFY THE SERACH RESPONSE!!!!
+											<option>Chooose a Theme</option>
+											<option>Batman</option>
+											<option>Superman</option>
+											<option>Poison Ivy</option>
+											<option>Wonderwoman</option>
+										</select> -->
 	
 										<br/>
-
 										<label for="search-input">How many would you like to see?</label>
-										<input id="gifAmount" type="number" value="5" class="form-control" style="color: white; background-color: #e244cf"/>
-										<br/>
+										<select id="gifAmount" class="form-control" style="color: white; background-color: #4b6594"><!--  //THIS PROVIDE A DROP DOWN MENU OF NUMERIC OPTIONS THAT RESPOND TO AND MODIFY THE SERACH RESPONSE!!!! -->
+											<option>Choose an Amount</option>
+											<option>1</option>
+											<option>5</option>
+											<option>10</option>
+											<option>15</option>
+										</select>
 
-										<button id="gifSearchButton" class="btn btn-primary" type="button" style=" background-color: #e244cf">Be back in a GIFFY</button>
-					    				<button id="clearButton" class="btn btn-primary" type="button" style=" background-color: #e244cf">Clear my GIFs!</button>
+										<br/>
+										
+										<button id="gifSearchButton" class="btn btn-primary" type="button" style=" background-color: #4b6594">Be back in a GIFFY</button>
+					    				<button id="clearButton" class="btn btn-primary" type="button" style=" background-color: #4b6594">Clear that GIF!</button>
+										<!-- <input id="gifSearchButton" type="submit" value="Be back in a GIFFY!"style=" background-color: #4b6594"/> -->
+										<br/>
+										<br/>
+										<div id="searchedGif" style="color: #e244cf"></div>
 
 									</div>
 								</form>
+							</div>
 						</div>
 					</div>
-				</div>			
+				</div>
+
+				<div class="container text-center">
+					<div class="panel panel-default">
+						<div class="panel-heading" style="color: white; background-color: #e244cf">GIF Search Parameters
+							<div class="panel-body" style="background-color: #566eeb">
+								<div id="gifArea"> You have no GIFS! <br/> Use the buttons above to have a 'GIFtastic' time!!</div>
+							</div>
+						</div>
+					</div>
+				</div>
 			</div>
 		</div>
-		
-		<div class="row">
-			<div class="col-xs-12">
-				<div id="stickyfooter2" class="navbar-fixed-bottom">
-					<footer class="panel-body text-center">Fun Fact: Giffing has been proven to boast your mood. =D </footer>
-				</div>
-			</div>		
-		
-		</div>	
-	</wrapper>
+	</div>
 
 	<script type="text/javascript" src="assets/javascript/app.js">
-
 	</script>
 
 </wrapper>
 
 </body>
 </html>
+
+
+
+<!-- //Alternative (Basic Layout Option purlely based on function(ality)!)! -->
+
+<!-- <div id="buttonSpace"></div>
+<form id="searchForm">
+	<label for="search-input">Add your search here!</label>  --> <!-- Review more re: LABEL TAG!!!! -->
+<!-- 	<input id="searchInput" type="text">
+	<input type="submit" value="submit">  Review more about INPUT TAGS and their PROPERTIES, ie value, or name, or type.
+</form> -->
+
+

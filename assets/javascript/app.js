@@ -42,7 +42,6 @@ $(document).ready(function() {
 	$("#gifSearchButton").on("click", function() {
 		event.preventDefault();
 		
-		// searchTermArray = []; Don't need to empty out the area because the display space is being refreshed each time INSTEAD!
 		searchTerm = $("#searchBox").val();
 		console.log(searchTerm);
 
@@ -65,7 +64,7 @@ $(document).ready(function() {
 
 		$("#gifArea").text("Click on the GIF button(s) above to reveal the power of your GIF!");
 
-		return false; //Don't need this fearture because, not useing a input element wieht a submit type/prop.
+		return false; //Don't need this fearture because, not useing a input element wieht a submit type/prop NOW,---> using button. CORRECT??
 	});	
 
 
@@ -94,60 +93,68 @@ $(document).ready(function() {
 		 gifTypeNum + "&rating=" + rating + "&lang=en";
 		console.log("URL= " + url);
 
-		// TEST URLs -->STILL NOT WORKING?!?!?!:
-		// var url = "https://api.giphy.com/v1/gifs/search?api_key=c543e1e3482945068cddd1abaf372398&q=superman&limit=10&offset=0&rating=G&lang=en"
-
-		$.ajax({url: url, method: "GET"})
+		$.ajax({
+			url: url, 
+			method: "GET"
+		})
 			.done(function(result) {
 				console.log("This is the result:" + result); // review the result for QA
 				console.log("URL: " + url + "IS working...");
 
-				$("#gifHeaderImg").attr("src", "/static/img/api.c99e353f761d.gif"); //make the static img - the main animaated GIF instead
 				$("#gifDiplayHeader").text("GIFs IN ACTION - " + gifTypeValue + ("!!"));  //Change the tite to include a mention to the current search
 
 
-				for (var j = 0; j < result.data.length; i++) { //(*IT IS CRUTIAL TO REMEBER TO PUT RESULT.DATA.LENGTH as we are cylcing thefour the RESULT'S
+				for (var j = 0; j < result.data.length; j++) { //(*IT IS CRUTIAL TO REMEBER TO PUT RESULT.DATA.LENGTH as we are cylcing thefour the RESULT'S
 				 // DATA info, and not an array called results with many types of names/values!!!*)			
 
 					var gifDisplayDiv = $("<div class='gifResult'>"); //creating div in which to place the GIF displays --> will append this to the gifArea!
 					var gifRating = result.data[j].rating; //adding rating to display alongside: 1) step one is grab value of rating
-					// var p = ("<p>").text("Rating: " + gifRating); 2) step two is place that value into a <p>tag.
+					var p = $("<p>").text("Rating: " + gifRating); //2) step two is place that value into a <p>tag.
 					
-					var animated = result.data[j].images.downsized_medium.url;
-					var still = result.data[j].images.downsized_still.url;
+					var animated = result.data[j].images.fixed_height.url;
+					var still = result.data[j].images.fixed_height_still.url;
 					var image = $("<img>");
+
+					image.attr("src", still); //setting the initial IMG Source to a STILL image
 					image.attr("data-still", still); //reference the url for the still GIF
 					image.attr("data-animated", animated); //reference the url for the animated
 					image.attr("data-state", "still"); //Setting the current status to "still"  --> this is GIF default state
 					image.addClass("finalGifImage");//CREATE a class for the 
 					
+					
 					gifDisplayDiv.append(p);
 					gifDisplayDiv.append(image);
 					$("#gifArea").append(gifDisplayDiv);
-					
-					$(document).on("click",".finalGifImage", function() {
-						var state = $(this).attr("data-state");
-						if(state == "still"){
-							$(this).attr("src", $(this).data("animated"));
-							$(this).attr("data-state", "animated");
-						}
-						else {
-							$(this).attr("src", $(this).data("still"));
-							$(this).attr("data-state", "still");
-						}
-					})
-			
-					.fail(function(err) {
-				  		throw err;
-					});
 				};
+			}).fail(function(err) {
+				throw err;
 			});
 
-			var clearDisplay = $("<button>").addclass("clearDisplay").text("Out of sight, out of mind.");
+			var clearDisplay = $("<button>"); 
+			clearDisplay.addClass("clearDisplay");
+			clearDisplay.text("Out of sight, out of mind.");
+			$("#gifArea").prepend(clearDisplay);
+
 			$(".clearDisplay").on("click", function() { //clears the displayed GIFs
 				$("#gifArea").empty();
+				console.log(clearDisplay.val());
+
+				$("#gifDiplayHeader").text("GIFs IN ACTION!!");
+				$("#gifArea").text("Click on the GIF button(s) above to reveal the power of your GIF!");
 			});
 
+	});//submit event listener & api 
+
+	$(document).on("click",".finalGifImage", function() { //IF THE BUTTON IS STILLL --> ANIMIATE IT. (THIS MUST BE OUTSIDE THE ORINIGAL Submit Event Handler, as it could be accessed outside just clicking sumbit, what if click another opeed search Gif tab.. then no submit button accesed.)
+		var state = $(this).attr("data-state");
+		if(state == "still"){
+			$(this).attr("src", $(this).data("animated"));
+			$(this).attr("data-state", "animated");
+		}
+		else {
+			$(this).attr("src", $(this).data("still"));
+			$(this).attr("data-state", "still");	
+		}
 	});
 
 }); //end of js file.

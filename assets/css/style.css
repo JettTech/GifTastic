@@ -33,6 +33,7 @@ h1 {
 
 .div.panel-heading {
 	width: 80%;
+	color: white; background-color: #e244cf;
 }
 
 .container.margin {
@@ -43,3 +44,14 @@ h1 {
 	border-width: 2px;
 	border-color: #e244cf;
 }
+
+button {
+	margin: 10px;
+}
+
+#gifHeaderImg {
+	width: 200px;
+	height: 200px;
+}
+
+		

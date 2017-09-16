@@ -22,14 +22,18 @@ h3 {
 	font-family: 'Monoton', cursive;
 }
 
-a.navbar-brand.text-center {
+a {
+	font-size: 18px;
+}
+
+/*a.navbar-brand.text-center {
 	position: absolute;
 	left: 200px;
 	width: 200px;
 	height: 100px;
 	margin: 30px;
 	padding-top: 40px;
-}
+}*/
 
 #gifSearchTitle {
 	color: #566eeb;
@@ -118,4 +122,13 @@ button {
 
 footer {
 	color: white;
+}
+
+div.panel.pane-inverse {
+	padding: 10px;
+}
+
+input::-webkit-input-placeholder {  /* Chrome/Opera/Safari */
+  color: white;
+  text-align: center; 
 }

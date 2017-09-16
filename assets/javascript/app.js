@@ -3,7 +3,7 @@ $(document).ready(function() {
  // ----------------------------------- DECLARE VAROABLES &&& FUNCTIONS------------------------------------------------
 	var	searchTermArray = ["Superman", "Batman", "Wonderwoman", "Poison Ivy"];
 	var searchTerm = "";
-	var searchTermNum = [];
+	var searchTermNum = "";
 
 	function createGifButton (searchArray, gifClass, searchNo, gifPostArea) {
 		// $("#gifArea").empty();
@@ -13,7 +13,7 @@ $(document).ready(function() {
 				var button = $("<button>");
 				button.addClass(gifClass);
 				button.attr("data-type", searchArray[i]); //this assigns an attribue called 'data-type' with a value that ==== the value of the current index in the sesarchTermArray, which in this case is a superhero name (ie. batman).
-				button.attr("data-num", searchNo[i])
+				button.attr("data-num", searchNo)
 				button.text(searchArray[i]); //this displays the value (in this case === a superhero name) of the item in the area.
 				$(gifPostArea).append(button);
 			}
@@ -37,6 +37,9 @@ $(document).ready(function() {
 
 	$("#clearButton").on("click", function() { //This is the reset button value.
 		clear();
+
+		$("#gifDiplayHeader").text("GIFs IN ACTION!!");
+		$("#gifArea").html("<div id='gifArea'>You haven't entered any GIFS! <br/> Use the buttons above to have a 'GIFtastic' time!!");
 	});
 
 	$("#gifSearchButton").on("click", function() {
@@ -62,9 +65,14 @@ $(document).ready(function() {
 		console.log($(".searchedGif").data("type")); //Why does this NOT console log ALL the buttons with the class ".searchedGIF"???, &&& Why does it only ALWAYS list the first search data (title/num) info?!
 		console.log($(".searchedGif").data("num")); // The same as above!
 
+		// var searchId = button.id; //Would / Could htis be a way to updatethe previous request to the most recent GIF search , and thsu corect its functioning.
+		// console.log(button.id);
+
+		$("#gifDiplayHeader").text("GIFs IN ACTION!!");
 		$("#gifArea").text("Click on the GIF button(s) above to reveal the power of your GIF!");
 
-		return false; //Don't need this fearture because, not useing a input element wieht a submit type/prop NOW,---> using button. CORRECT??
+
+		return false; //!!!!!!!!Don't need this fearture because, not useing a input element wieht a submit type/prop NOW,---> using button. CORRECT??!!!!!!!********
 	});	
 
 
@@ -72,8 +80,8 @@ $(document).ready(function() {
 
  //----------------------------------- Starting point for api interface.. getting and displaying the GIFs!!!!!!-------------------------------- 
 
-	// $(document).on("click", ".searchedGif", function () {
-	$(".searchedGif").on("click", function(){
+	$(document).on("click", ".searchedGif", function () {
+	// $(".searchedGif").on("click", function(){ //!!!CANNOT USE THIS SET-UP BECAUSE THE CLASS ".SEARCHEDGIF" WAS DYNAMICALLY CREATED WITH JQUERY!!!!!
 		event.preventDefault();
 		
 		console.log("I am running.");
@@ -84,9 +92,9 @@ $(document).ready(function() {
 		var gifTypeNum = $(this).data("num");
 		
 		console.log($(this).data("type")); //should match previous
-		console.log($(this).data("num")); //should match previous
+		console.log($(this).data("num")); //!!!!should match previous ---> THIS IS UNDEFINED...?? WHY???!!!!!************
 
-		var rating = "PG-13" || "PG" || "G"; //setting the rating parameters (?? -> parameters? correct term? ??)
+		var rating = "PG-13" || "PG" || "G"; //setting the rating parameters (?? -> parameters? correct term? ??) WHY DO SOME Y ratings pass through??!!
 
 		var apiKey = "c543e1e3482945068cddd1abaf372398";
 		var url = "https://api.giphy.com/v1/gifs/search?api_key=" + apiKey + "&q=" + gifTypeValue + "&limit=" +
@@ -146,6 +154,8 @@ $(document).ready(function() {
 	});//submit event listener & api 
 
 	$(document).on("click",".finalGifImage", function() { //IF THE BUTTON IS STILLL --> ANIMIATE IT. (THIS MUST BE OUTSIDE THE ORINIGAL Submit Event Handler, as it could be accessed outside just clicking sumbit, what if click another opeed search Gif tab.. then no submit button accesed.)
+		event.preventDefault();
+
 		var state = $(this).attr("data-state");
 		if(state == "still"){
 			$(this).attr("src", $(this).data("animated"));

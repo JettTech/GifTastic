@@ -6,7 +6,6 @@
 	letter-spacing: .5px;
 	box-sizing: border-box;
 	text-align: center;
-	
 }
 
 body {
@@ -26,17 +25,8 @@ a {
 	font-size: 18px;
 }
 
-/*a.navbar-brand.text-center {
-	position: absolute;
-	left: 200px;
-	width: 200px;
-	height: 100px;
-	margin: 30px;
-	padding-top: 40px;
-}*/
-
 #gifSearchTitle {
-	color: #566eeb;
+	color: #1c1f4b;
 	margin-bottom: 10px;
 }
 
@@ -45,7 +35,7 @@ a {
 }
 
 #searchedGif {
-	background-color: #566eeb;
+	background-color: #1c1f4b;
 }
 
 #termBox {
@@ -57,8 +47,13 @@ button {
 	color: #e244cf;
 	font-size: 14px;
 	font-family: 'Montserrat', sans-serif;
+	border-radius: 4%;
+	box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.);
 }
 
+button:hover {
+	border: 2px solid #e244cf;
+}
 
 #gifHeaderImg {
 	width: 150px;
@@ -77,7 +72,7 @@ button {
 .navbar-nav {
 	clear: both;
 	overflow: auto;
-	background-color: #566eeb;
+	background-color: #e244cf;
 }
 
 .navbar-right {
@@ -87,13 +82,13 @@ button {
 }
 		
 .navbar-default .navbar-nav>li>a {
-	background-color: #566eeb;
+	background-color: #1c1f4b;
 	color: white;
 }
 
 .nav>li>a:hover {
-	background-color: #e244cf;
-	color: black;
+	background-color: #1c1f4b;
+	color: #1c1f4b;
 }
 
 .panel-heading {
@@ -115,7 +110,7 @@ button {
 }
 
 #stickyfooter2 {
-	background-color: #566eeb;
+	background-color: #1c1f4b;
 	height: 50px;
 	font-size: 14px;
 }
@@ -131,4 +126,53 @@ div.panel.pane-inverse {
 input::-webkit-input-placeholder {  /* Chrome/Opera/Safari */
   color: white;
   text-align: center; 
+}
+
+#footer-text {
+	height: 50px; 
+	overflow: hidden;
+	position: relative;
+}
+
+#footer-text h4 {
+	color: white;
+	font-family: 'Monoton', cursive;
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	margin: 0;
+	line-height: 15px;
+	text-align: center;
+
+	/* Starting position */
+	-moz-transform:translateX(100%);
+	-webkit-transform:translateX(100%); 
+	transform:translateX(100%);
+
+	/* Apply animation to this element */ 
+	-moz-animation: scroll-left 20s linear infinite;
+	-webkit-animation: scroll-left 20s linear infinite;
+	animation: scroll-left 20s linear infinite;
+}
+
+/* Move it (define the animation) */
+@-moz-keyframes scroll-left {
+	0% { -moz-transform: translateX(100%); }
+	100% { -moz-transform: translateX(-100%); }
+	}
+	@-webkit-keyframes scroll-left {
+		0% { -webkit-transform: translateX(100%); }
+		100% { -webkit-transform: translateX(-100%); }
+	}
+	@keyframes scroll-left {
+	0% { 
+		-moz-transform: translateX(100%); /* Browser bug fix */
+		-webkit-transform: translateX(100%); /* Browser bug fix */
+		transform: translateX(100%); 
+	}
+	100% { 
+		-moz-transform: translateX(-100%); /* Browser bug fix */
+		-webkit-transform: translateX(-100%); /* Browser bug fix */
+		transform: translateX(-100%); 
+	}
 }
